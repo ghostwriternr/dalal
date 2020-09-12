@@ -4,4 +4,4 @@ def handle(req):
         req (str): request body
     """
 
-    return req
+    return {"headers": {"X-Header": "header_text"}, "body": {"data": "Webhook payload"}}
