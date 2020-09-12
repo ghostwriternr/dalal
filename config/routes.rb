@@ -5,7 +5,8 @@ Rails.application.routes.draw do
       put :generate_function
       put :execute_function
       post :webhook
+      get :history
     end
   end
-  resources :histories, only: [:show, :create]
+  resources :histories, only: [:show]
 end
