@@ -60,7 +60,7 @@ class ChannelsController < ApplicationController
         hist = History.new(
             channel: @channel.id,
             success: res.code == 200,
-            transformed_payload: res2.code == 200 ? res2.payload || res2.error,
+            transformed_payload: res2.code == 200 ? res2.payload : res2.error,
             metadata: {payload: res.body}     
         )
         hist.save

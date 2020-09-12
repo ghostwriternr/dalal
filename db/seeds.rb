@@ -5,3 +5,15 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+template = Template.create([{
+    language: 'python',
+    content: 'def handle(req):
+    """handle a request to the function
+    """
+
+    return {
+        headers: {"X-Header": "header_text"},
+        body: {data: "Webhook payload"}
+    }'
+}])
