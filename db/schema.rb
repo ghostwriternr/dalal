@@ -16,18 +16,32 @@ ActiveRecord::Schema.define(version: 2020_09_12_050759) do
   enable_extension "plpgsql"
 
   create_table "channels", force: :cascade do |t|
+    t.string "uuid"
+    t.string "target"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "histories", force: :cascade do |t|
+    t.bigint "channel_id"
+    t.boolean "success", default: true
+    t.json "metadata"
+    t.text "payload"
+    t.text "transformed_payload"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["channel_id"], name: "index_histories_on_channel_id"
   end
 
   create_table "transformation_functions", force: :cascade do |t|
+    t.text "function"
+    t.string "language"
+    t.bigint "channel_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["channel_id"], name: "index_transformation_functions_on_channel_id"
   end
 
+  add_foreign_key "histories", "channels"
+  add_foreign_key "transformation_functions", "channels"
 end
