@@ -31,5 +31,5 @@
 # Ignore application configuration
 /config/application.yml
 
-template
-build
+# VSCode
+.vscode
