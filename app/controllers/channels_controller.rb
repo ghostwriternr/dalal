@@ -52,8 +52,26 @@ class ChannelsController < ApplicationController
         init_channel(params['id'])
         if !@channel.nil?
             res = Typhoeus.post("http://13.235.114.190:8080/function/#{@channel.uuid}")
-            render json: {payload: res.body}
+            if res.code == 200
+                render json: {payload: res.body}
+            else
+                render json: {error: res.body}, status: :unprocessable_entity
+            end
         end
+    end
+
+    def webhook
+        # check if function exists
+        init_channel(params['id'])
+        res = Typhoeus.get("http://13.235.114.190:8080/system/function/#{@channel.uuid}")
+        # if no generate function
+
+        # hit openFaas function to get transformed data
+
+        # hit target url
+
+        # record activity
+
     end
 
     private

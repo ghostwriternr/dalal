@@ -3,8 +3,8 @@ class CreateChannels < ActiveRecord::Migration[6.0]
     create_table :channels do |t|
       t.string :uuid
       t.string :target, :default => ''
-      t.text :function, :default => ''
-      t.string :language, :default => ''
+      t.text :function
+      t.string :language
 
       t.timestamps
     end
