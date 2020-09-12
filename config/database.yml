@@ -84,4 +84,4 @@ production:
   host: <%= ENV['prod_db_host'] %>
   username: <%= ENV['prod_db_username'] %>
   password: <%= ENV['prod_db_password'] %>
-   port: 5432
+  port: 5432
