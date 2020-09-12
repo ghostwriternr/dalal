@@ -81,5 +81,7 @@ test:
 production:
   <<: *default
   database: dalal_server_production
-  username: dalal_server
-  password: <%= ENV['DALAL_SERVER_DATABASE_PASSWORD'] %>
+  host: <%= ENV['prod_db_host'] %>
+  username: <%= ENV['prod_db_username'] %>
+  password: <%= ENV['prod_db_password'] %>
+   port: 5432
