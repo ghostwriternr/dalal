@@ -17,7 +17,9 @@ ActiveRecord::Schema.define(version: 2020_09_12_050759) do
 
   create_table "channels", force: :cascade do |t|
     t.string "uuid"
-    t.string "target"
+    t.string "target", default: ""
+    t.text "function", default: ""
+    t.string "language", default: ""
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -33,15 +35,5 @@ ActiveRecord::Schema.define(version: 2020_09_12_050759) do
     t.index ["channel_id"], name: "index_histories_on_channel_id"
   end
 
-  create_table "transformation_functions", force: :cascade do |t|
-    t.text "function"
-    t.string "language"
-    t.bigint "channel_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["channel_id"], name: "index_transformation_functions_on_channel_id"
-  end
-
   add_foreign_key "histories", "channels"
-  add_foreign_key "transformation_functions", "channels"
 end
