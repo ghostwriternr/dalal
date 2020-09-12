@@ -25,25 +25,7 @@ class ChannelsController < ApplicationController
     def generate_function
         init_channel(params['id'])
         if !@channel.nil?
-            # delete files if exist
-
-            # create docker template
-            data = `cd functions && faas-cli new --lang python3 #{@channel.uuid}`
-            puts data
-
-            # update handler.py
-            File.delete("functions/#{@channel.uuid}/handler.py")
-            file = File.open("functions/#{@channel.uuid}/handler.py", "w")
-            file.puts @channel.function
-            file.close
-
-            # create 
-            data = `cd functions && faas-cli up -f #{@channel.uuid}.yml`
-            puts data
-            # delete files
-            FileUtils.rm_rf("functions/#{@channel.uuid}")
-            FileUtils.rm_rf("functions/build/#{@channel.uuid}")
-            File.delete("functions/#{@channel.uuid}.yml")
+            create_openfaas_function(@channel.uuid)
             render json: { ok: true }
         end
     end
@@ -61,20 +43,50 @@ class ChannelsController < ApplicationController
     end
 
     def webhook
-        # check if function exists
         init_channel(params['id'])
-        res = Typhoeus.get("http://13.235.114.190:8080/system/function/#{@channel.uuid}")
-        # if no generate function
 
-        # hit openFaas function to get transformed data
-
+        if !@channel.nil?
+            # check if function exists
+            res = Typhoeus.get("http://13.235.114.190:8080/function/#{@channel.uuid}")
+            if res.code == 404
+             # if no generate function
+                create_openfaas_function(@channel.uuid)
+            end
+        end
+        
         # hit target url
-
+        res2 = Typhoeus.post("#{@channel.target}", body: params.data )
         # record activity
-
+        hist = History.new(
+            channel: @channel.id,
+            success: res.code == 200,
+            transformed_payload: res2.code == 200 ? res2.payload : res2.error,
+            metadata: {payload: res.body}     
+        )
+        hist.save
     end
 
     private
+    def create_openfaas_function(uuid)
+        # create docker template
+        data = `cd functions && faas-cli new --lang python3 #{uuid}`
+        puts data
+
+        # update handler.py
+        File.delete("functions/#{uuid}/handler.py")
+        file = File.open("functions/#{uuid}/handler.py", "w")
+        file.puts function
+        file.close
+
+        # create 
+        data = `cd functions && faas-cli up -f #{uuid}.yml`
+        puts data
+        # delete files
+        FileUtils.rm_rf("functions/#{uuid}")
+        FileUtils.rm_rf("functions/build/#{uuid}")
+        File.delete("functions/#{uuid}.yml")
+    end
+
     def init_channel(id)
         @channel = Channel.where(uuid: id).first
     end
