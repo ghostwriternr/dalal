@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(version: 2020_09_12_124111) do
   create_table "channels", force: :cascade do |t|
     t.string "uuid"
     t.string "target", default: ""
-    t.text "function", default: ""
-    t.string "language", default: ""
+    t.text "function"
+    t.string "language"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
