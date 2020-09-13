@@ -64,6 +64,7 @@ GEM
     builder (3.2.4)
     byebug (11.1.3)
     concurrent-ruby (1.1.7)
+    connection_pool (2.2.3)
     crass (1.0.6)
     e2mmap (0.1.0)
     erubi (1.9.0)
@@ -74,6 +75,8 @@ GEM
       thor (>= 0.14.0, < 2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    groupdate (5.2.1)
+      activesupport (>= 5)
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
     jaro_winkler (1.5.4)
@@ -139,6 +142,7 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    redis (4.2.1)
     regexp_parser (1.7.1)
     reverse_markdown (2.0.0)
       nokogiri
@@ -155,6 +159,10 @@ GEM
     rubocop-ast (0.4.0)
       parser (>= 2.7.1.4)
     ruby-progressbar (1.10.1)
+    sidekiq (6.1.0)
+      connection_pool (>= 2.2.2)
+      rack (~> 2.0)
+      redis (>= 4.2.0)
     solargraph (0.39.15)
       backport (~> 1.1)
       benchmark
@@ -201,12 +209,14 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   figaro
+  groupdate
   listen (~> 3.2)
   pg (>= 0.18, < 2.0)
   puma (~> 4.1)
   rack-cors
   rails (~> 6.0.3, >= 6.0.3.2)
   rubocop
+  sidekiq
   solargraph
   spring
   spring-watcher-listen (~> 2.0.0)

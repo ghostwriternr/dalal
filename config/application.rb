@@ -33,7 +33,7 @@ module DalalServer
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     if Rails.env.development?
-      config.hosts << "1d279099f9ad.ngrok.io"
+      config.hosts << "0c2cf70abe34.ngrok.io"
     end
     config.api_only = true
   end
