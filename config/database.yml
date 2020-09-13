@@ -87,9 +87,7 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: dalal_server_production
-  host: <%= ENV['prod_db_host'] %>
-  username: <%= ENV['prod_db_username'] %>
-  password: <%= ENV['prod_db_password'] %>
-  port: 5432
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  url: <%= ENV.fetch("DATABASE_URL") %>
