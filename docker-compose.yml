@@ -14,5 +14,7 @@ services:
       - .:/dalal
     ports:
       - "3000:3000"
+    environment:
+      - RAILS_ENV=staging
     depends_on:
       - db
