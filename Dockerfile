@@ -2,6 +2,11 @@ FROM ruby:2.6.3
 
 # Install dependencies
 RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs libsqlite3-dev
+
+## Docker
+RUN curl -fsSL https://get.docker.com -o get-docker.sh
+RUN sh get-docker.sh
+## OpenFaas
 RUN curl -sSL https://cli.openfaas.com | sh
 
 # Copy files and install gems
