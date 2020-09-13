@@ -52,15 +52,13 @@ class ChannelsController < ApplicationController
              # if no generate function
                 create_openfaas_function(@channel)
             end
-            res = Typhoeus.post("http://13.235.114.190:8080/function/#{@channel.uuid}", body: params.to_json)
+            
+            res = Typhoeus.post("http://13.235.114.190:8080/function/#{@channel.uuid}", body: params["payload"])
             if res.code == 200
                 transformed_payload = JSON.parse(res.body.squish.gsub("'","\""))
+                res2 = Typhoeus.post("#{@channel.target}", body: JSON.dump(transformed_payload["body"]) )
             else 
                 transformed_payload = res.body.squish
-            end
-            if res.code == 200
-                # hit target url
-                res2 = Typhoeus.post("#{@channel.target}", body: JSON.dump(transformed_payload["body"]) )
             end
               
             # record activity
