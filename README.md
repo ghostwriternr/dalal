@@ -3,7 +3,9 @@
 ### Connect your services in few lines of code
 [Access it here](https://master.d2r6jsqlksznst.amplifyapp.com/)
 
-This project is the UI interaction for Dalal
+This project is the backend service for Dalal
+
+[Frontend Repo](https://github.com/ghostwriternr/dalal-ui)
 
 ![alt text](logo.png "Logo")
 
