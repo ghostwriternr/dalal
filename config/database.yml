@@ -17,9 +17,6 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  host: db
-  username: postgres
-  password: password
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
@@ -27,6 +24,13 @@ default: &default
 development:
   <<: *default
   database: dalal_server_development
+
+staging:
+  <<: *default
+  host: db
+  username: postgres
+  password: password
+  database: dalal_server_staging
 
 
   # The specified database role being used to connect to postgres.
