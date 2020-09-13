@@ -2,6 +2,7 @@ require 'sidekiq/web'
 Sidekiq::Web.set :sessions, false
 
 Rails.application.routes.draw do
+  resources :health, only: [:index]
   resources :templates, only: [:index]
   resources :channels, only: [:create, :show, :update, :delete] do
     member do
