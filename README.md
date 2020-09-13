@@ -1,66 +1,110 @@
-# Dalal
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <h1>🦹 Dalal 🦹</h1>
 
-### Connect your services in few lines of code
-[Access it here](https://master.d2r6jsqlksznst.amplifyapp.com/)
+  <p align="center">
+    <b>BYOL* Payload Transormation Service</b>
+    <br/>
+    (*Bring Your Own Language 👻)
+    <br /><br />
+    <a href="https://master.d2r6jsqlksznst.amplifyapp.com/"><strong>Try it out »</strong></a>
+    <br /><br />
+    <a href="https://github.com/ghostwriternr/dalal/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/ghostwriternr/dalal/issues">Request Feature</a>
+  </p>
+  <img src="logo.png" alt="diagram"/>
+</div>
 
-This project is the backend service for Dalal
+<!-- TABLE OF CONTENTS -->
 
-[Frontend Repo](https://github.com/ghostwriternr/dalal-ui)
+## Table of Contents
 
-![alt text](logo.png "Logo")
+- [About the Project](#about-the-project)
+  - [Key Features](#key-features)
+  - [Built With](#built-with)
+- [Usage Instructions](#usage-instructions)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Running Dalal locally](#running-dalal-locally)
+- [Roadmap](#roadmap)
+- [Contributing](#contributing)
+- [Credits](#credits)
 
-Dalal helps you in connecting multiple systems to one another with just few lines of code.
+## About The Project
+
+![screenshot](https://user-images.githubusercontent.com/10023615/93024898-4e815180-f617-11ea-8fef-e1ca4c9ec442.png)
+
+Dalal is a powerful, in-flight webhook transformation service to connect absolutely any 2 services with very few lines of code - writen in your favourite language!
+
+### Key Features:
+
+- Only expects a simple transformation function to convert the source payload to your destination service.
+- Runs on top of [OpenFaaS](https://www.openfaas.com/), so every language supported on OpenFaaS is supported.
+- Detailed logs of past deliveries & errors with statistics.
+
+### Built With
+
+- [Ruby on Rails](https://rubyonrails.org/) and [Sidekiq](https://github.com/mperham/sidekiq)
+- [OpenFaas](https://www.openfaas.com/)
+- [Postgres](https://www.postgresql.org/)
+- [React](https://reactjs.org/) with [TS](https://www.typescriptlang.org/) & [Styled Components](https://styled-components.com/)
+- [Ant Design](https://ant.design/docs/react/introduce) and [Nivo](https://nivo.rocks/)
+
+## Usage Instructions
 
 1. Create a new channel from the home page.
-3. Write a transformation function in any language desired, which will take in the data passed when the webhook is called, and use that to forward the data to desired service in the required format.
-4. Add the url of the desired service, where you want to forward the request, in the target URL.
-5. Click on Save.
+2. Write a transformation function in any language desired, which will take in the data passed when the webhook is called, and use that to forward the data to desired service in the required format.
+3. Add the url of the desired service, where you want to forward the request, in the target URL.
+4. Click on Save.
 
-Boom, your channel is ready to be used, copy it's URL and add it from wherever you want to send the request. It will trigger your function, transform the data passed by the sender using the logic you wrote and send it forward to the URL you defined in that format.
+## Getting Started
 
-In just few lines of code, you connected two different services.
+### Prerequisites
 
-You can also see all the events triggered for the channel in history tab when you are on the channel page.
+- [Docker](https://docs.docker.com/get-docker/) & [Docker Compose](https://docs.docker.com/compose/install/)
+- [Docker Hub account](https://hub.docker.com/) (Other registries to be supported soon)
+- [OpenFaaS](https://github.com/openfaas/faas) running locally or remote
+  - We recommend [faasd](https://github.com/openfaas/faasd) to get up and running within 5 minutes. It is a single golang binary wrapping the core project.
 
-On the statistics page currently you will the events which were sent in an hour time frame for the current Day. (Improvements coming)
+### Running Dalal Locally
 
-[API documentation](https://documenter.getpostman.com/view/3355451/TVK5eMcp#100481c4-4ab5-4d57-87e3-c64c58b676fe)
+- Start the service using:
 
-### Technologies Used
-#### Frontend
-- React
-- Typescript
-- Styled Components
-- Ant Design (UI library)
-- Nivo (Graph Plottiing)
+```sh
+docker-compose up
+```
 
-#### Backend
-- Ruby on Rails
-- OpenFaas
-- Docker
-- Sidekiq
-- Postgres (Database)
+## API Documentation
 
+[Postman Documentation](https://documenter.getpostman.com/view/3355451/TVK5eMcp#100481c4-4ab5-4d57-87e3-c64c58b676fe), which you can also import as a collection for local testing.
 
-<!-- This README would normally document whatever steps are necessary to get the
-application up and running. -->
+## Roadmap
 
-<!-- Things you may want to cover:
+- Test and expand support to more languages
+- Enhance API to enable testing transformations right from the browser
+- Support private registries for function image storage
+- Add detailed metrics
+- Support autoscaling for functions expecting high traffic
+- Minimize time to update & deploy a function to OpenFaaS
 
-* Ruby version
+<!-- CONTRIBUTING -->
 
-* System dependencies
+## Contributing
 
-* Configuration
+Contributions to Dalal are always welcome and all contributions you make are **greatly appreciated**. If you need clarifications, please [create an issue](https://github.com/ghostwriternr/dalal/issues/new).
 
-* Database creation
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-* Database initialization
+## Credits
 
-* How to run the test suite
+- [mukul13 / Mukul Chaware](https://github.com/mukul13)
+- [shubhamjain148 / Shubham Jain](https://github.com/shubhamjain148)
+- [ghostwriternr / Naresh Ramesh](https://github.com/ghostwriternr)
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ... -->
+Built with love, empathy and superpowers 🌺
