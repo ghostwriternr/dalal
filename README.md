@@ -76,6 +76,8 @@ Dalal is a powerful, in-flight webhook transformation service to connect absolut
 docker-compose up
 ```
 
+- (Optional) run the Dalal UI frontend with [instructions from dalal-ui](https://github.com/ghostwriternr/dalal-ui#getting-started).
+
 ## API Documentation
 
 [Postman Documentation](https://documenter.getpostman.com/view/3355451/TVK5eMcp#100481c4-4ab5-4d57-87e3-c64c58b676fe), which you can also import as a collection for local testing.
