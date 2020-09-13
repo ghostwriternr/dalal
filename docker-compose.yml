@@ -4,17 +4,31 @@ services:
     image: postgres
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
-    environment:
-      POSTGRES_USERNAME: postgres
-      POSTGRES_PASSWORD: password
   web:
     build: .
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
       - .:/dalal
+    environment:
+      RAILS_ENV: "production"
+      REDIS_URL: "redis://redis:6379/12"
+      ENABLE_BOOTSNAP: "false"
     ports:
       - "3000:3000"
-    environment:
-      - RAILS_ENV=staging
     depends_on:
       - db
+  redis:
+    image: redis
+    volumes:
+      - ./tmp/db:/var/lib/redis/data
+  sidekiq:
+    build: .
+    command: "bundle exec sidekiq"
+    volumes:
+      - .:/dalal
+    environment:
+      RAILS_ENV: "production"
+      REDIS_URL: "redis://redis:6379/12"
+      ENABLE_BOOTSNAP: "true"
+    depends_on:
+      - redis
