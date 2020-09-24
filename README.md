@@ -10,6 +10,8 @@
     <br /><br />
     <a href="https://www.usedalal.com"><strong>Try it out »</strong></a>
     <br /><br />
+    <a href="https://fossunited.org"><img src="http://fossunited.org/files/fossunited-badge.svg" alt="Supported by FOSS United" /></a>
+    <br /><br />
     <a href="https://github.com/ghostwriternr/dalal/issues">Report Bug</a>
     ·
     <a href="https://github.com/ghostwriternr/dalal/issues">Request Feature</a>
